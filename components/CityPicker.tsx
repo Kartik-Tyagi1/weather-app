@@ -47,7 +47,11 @@ const countryOptions = Country.getAllCountries().map((country) => ({
   label: country.name,
 }));
 
-const CityPicker = () => {
+interface CityPickerProps {
+  showReset?: boolean;
+}
+
+const CityPicker = ({ showReset }: CityPickerProps) => {
   const [selectedCountry, setSelectedCountry] =
     useState<CountryOptionType>(null);
 
@@ -188,12 +192,14 @@ const CityPicker = () => {
         >
           Get Weather
         </button>
-        <button
-          onClick={resetInputs}
-          className="flex text-gray-300 bg-gray-900 p-3 rounded-lg"
-        >
-          <RefreshIcon className="h-5 w-5 mr-1" /> Reset Inputs
-        </button>
+        {showReset && (
+          <button
+            onClick={resetInputs}
+            className="flex text-gray-300 bg-gray-900 p-3 rounded-lg"
+          >
+            <RefreshIcon className="h-5 w-5 mr-1" /> Reset Inputs
+          </button>
+        )}
       </div>
     </div>
   );

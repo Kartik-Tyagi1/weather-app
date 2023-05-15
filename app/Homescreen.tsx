@@ -16,7 +16,7 @@ const Homescreen = () => {
 
         <Divider className="my-10" />
         <Card className="bg-gradient-to-br from-[#394F68] to-[#ca0d10]">
-          <CityPicker />
+          <CityPicker showReset />
         </Card>
       </Card>
     </div>
