@@ -33,7 +33,7 @@ const WeatherPage = async ({
     <div className="flex flex-col min-h-screen md:flex-row">
       {/* Information Panel */}
       <InformationSideBar city={city} result={result} lat={lat} long={long} />
-      <div className="flex-1 p-5 lg:p-10">
+      <div className="flex-1 p-5 lg:p-10 bg-slate-500">
         {/* Stat Cards */}
         <div className="p-5">
           <div className="pb-5">
