@@ -7,7 +7,7 @@ interface TempChartProps {
   result: Root;
 }
 
-const TempChart = ({ result }: TempChartProps) => {
+const TempChart: React.FC<TempChartProps> = ({ result }) => {
   const hourly = result?.hourly.time
     .map((time) =>
       new Date(time).toLocaleString("en", {

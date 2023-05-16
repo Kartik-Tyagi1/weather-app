@@ -51,7 +51,7 @@ interface CityPickerProps {
   showReset?: boolean;
 }
 
-const CityPicker = ({ showReset }: CityPickerProps) => {
+function CityPicker({ showReset }: CityPickerProps) {
   const [selectedCountry, setSelectedCountry] =
     useState<CountryOptionType>(null);
 
@@ -203,6 +203,6 @@ const CityPicker = ({ showReset }: CityPickerProps) => {
       </div>
     </div>
   );
-};
+}
 
 export default CityPicker;

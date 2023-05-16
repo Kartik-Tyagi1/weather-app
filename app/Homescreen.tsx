@@ -3,7 +3,7 @@
 import CityPicker from "@/components/CityPicker";
 import { Card, Divider, Subtitle, Text } from "@tremor/react";
 
-const Homescreen = () => {
+function Homescreen() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#394F68] to-[#ca0d10] p-10 flex flex-col justify-center items-center">
       <Card className="max-w-6xl mx-auto bg-gray-900">
@@ -21,6 +21,6 @@ const Homescreen = () => {
       </Card>
     </div>
   );
-};
+}
 
 export default Homescreen;

@@ -6,7 +6,7 @@ interface RainChartProps {
   result: Root;
 }
 
-const RainChart = ({ result }: RainChartProps) => {
+function RainChart({ result }: RainChartProps) {
   const hourly = result?.hourly.time
     .map((time) =>
       new Date(time).toLocaleString("en", {
@@ -40,6 +40,6 @@ const RainChart = ({ result }: RainChartProps) => {
       />
     </Card>
   );
-};
+}
 
 export default RainChart;

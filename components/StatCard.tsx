@@ -8,7 +8,7 @@ interface StatCardProps {
   color?: Color;
 }
 
-const StatCard = ({ title, metric, color }: StatCardProps) => {
+function StatCard({ title, metric, color }: StatCardProps) {
   return (
     <Card decoration="top" decorationColor={color} className="bg-slate-200">
       <div>
@@ -17,6 +17,6 @@ const StatCard = ({ title, metric, color }: StatCardProps) => {
       </div>
     </Card>
   );
-};
+}
 
 export default StatCard;

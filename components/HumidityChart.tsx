@@ -6,7 +6,7 @@ interface HumidityChartProps {
   result: Root;
 }
 
-const HumidityChart = ({ result }: HumidityChartProps) => {
+function HumidityChart({ result }: HumidityChartProps) {
   const hourly = result?.hourly.time
     .map((time) =>
       new Date(time).toLocaleString("en", {
@@ -40,6 +40,6 @@ const HumidityChart = ({ result }: HumidityChartProps) => {
       />
     </Card>
   );
-};
+}
 
 export default HumidityChart;

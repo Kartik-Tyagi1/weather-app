@@ -13,12 +13,12 @@ interface InformationSideBarProps {
   result: Root;
 }
 
-const InformationSideBar = ({
+function InformationSideBar({
   city,
   lat,
   long,
   result,
-}: InformationSideBarProps) => {
+}: InformationSideBarProps) {
   return (
     <div className="bg-gradient-to-br from-[#394F68] to-[#ca0d10] text-gray-300 p-10">
       <div className="pb-5">
@@ -104,6 +104,6 @@ const InformationSideBar = ({
       </div>
     </div>
   );
-};
+}
 
 export default InformationSideBar;

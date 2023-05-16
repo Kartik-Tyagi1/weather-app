@@ -8,7 +8,7 @@ interface CalloutCardProps {
   warning?: boolean;
 }
 
-const CalloutCard = ({ message, warning }: CalloutCardProps) => {
+function CalloutCard({ message, warning }: CalloutCardProps) {
   return (
     <Callout
       className="mt-4"
@@ -17,6 +17,6 @@ const CalloutCard = ({ message, warning }: CalloutCardProps) => {
       color={warning ? "rose" : "teal"}
     />
   );
-};
+}
 
 export default CalloutCard;

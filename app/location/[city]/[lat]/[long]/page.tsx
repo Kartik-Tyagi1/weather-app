@@ -6,7 +6,9 @@ import RainChart from "@/components/RainChart";
 import StatCard from "@/components/StatCard";
 import TempChart from "@/components/TempChart";
 import fetchWeatherQuery from "@/graphql/queries/fetchWeatherQueries";
+import cleanData from "@/lib/cleanData";
 import { toFahrenheit, toMilesHour } from "@/lib/conversions";
+import getBasePath from "@/lib/getBasePath";
 
 export const revalidate = 60;
 
@@ -18,9 +20,7 @@ interface WeatherPageProps {
   };
 }
 
-const WeatherPage = async ({
-  params: { city, lat, long },
-}: WeatherPageProps) => {
+async function WeatherPage({ params: { city, lat, long } }: WeatherPageProps) {
   const client = getClient();
   const { data } = await client.query({
     query: fetchWeatherQuery,
@@ -33,14 +33,24 @@ const WeatherPage = async ({
   });
 
   const result: Root = data.myQuery;
-  console.log(result.hourly.time);
+  const dataToSend = cleanData(result, city);
+  const res = await fetch(`${getBasePath()}/api/getWeatherSummary`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      weatherData: dataToSend,
+    }),
+  });
+  const GPTData = await res.json();
+  const { content } = GPTData;
 
   return (
     <div className="flex flex-col min-h-screen md:flex-row">
       {/* Information Panel */}
       <InformationSideBar city={city} result={result} lat={lat} long={long} />
       <div className="flex-1 p-5 lg:p-10 bg-slate-500">
-        {/* Stat Cards */}
         <div>
           <div className="pb-5">
             <h2 className="text-xl font-bold">Today&apos;s Overview</h2>
@@ -51,9 +61,8 @@ const WeatherPage = async ({
             </p>
           </div>
           <div className="m-2 mb-10">
-            <CalloutCard message="This is where GPT will go" />
+            <CalloutCard message={content} />
           </div>
-          <hr className="mb-5" />
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 m-2">
             <StatCard
               title="Today's Max Temperature"
@@ -100,7 +109,6 @@ const WeatherPage = async ({
         </div>
 
         <hr className="mb-5" />
-        {/* Charts */}
         <div className="space-y-3">
           <TempChart result={result} />
           <RainChart result={result} />
@@ -109,6 +117,6 @@ const WeatherPage = async ({
       </div>
     </div>
   );
-};
+}
 
 export default WeatherPage;

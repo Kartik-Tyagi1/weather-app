@@ -1,6 +1,6 @@
 import { SunIcon } from "@heroicons/react/solid";
 
-const Loading = () => {
+function Loading() {
   return (
     <div className="bg-gradient-to-br from-[#394F68] to-[#ca0d10] min-h-screen flex flex-col items-center justify-center text-slate-300">
       <SunIcon className="h-24 w-24 animate-bounce text-yellow-500" />
@@ -12,6 +12,6 @@ const Loading = () => {
       </h2>
     </div>
   );
-};
+}
 
 export default Loading;
