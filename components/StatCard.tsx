@@ -10,7 +10,7 @@ interface StatCardProps {
 
 const StatCard = ({ title, metric, color }: StatCardProps) => {
   return (
-    <Card decoration="top" decorationColor={color} className="bg-slate-300">
+    <Card decoration="top" decorationColor={color} className="bg-slate-200">
       <div>
         <Text>{title}</Text>
         <Metric>{metric}</Metric>

@@ -23,7 +23,7 @@ const InformationSideBar = ({
     <div className="bg-gradient-to-br from-[#394F68] to-[#ca0d10] text-gray-300 p-10">
       <div className="pb-5">
         <h1 className="text-6xl font-bold">{decodeURI(city)}</h1>
-        <p className="text-sm text-gray-400">
+        <p className="text-sm text-gray-400 pt-2">
           Long/Lat: {long}, {lat}
         </p>
       </div>
@@ -80,7 +80,7 @@ const InformationSideBar = ({
           <div className="flex-1 flex justify-between items-center">
             <p className="font-extralight">Sunrise</p>
             <p className="text-2xl uppercase">
-              {new Date(result.daily.sunrise[0]).toLocaleTimeString("en", {
+              {new Date(result.daily.sunrise[0]).toLocaleTimeString("en-US", {
                 hour: "numeric",
                 minute: "numeric",
                 hour12: true,
@@ -93,7 +93,7 @@ const InformationSideBar = ({
           <div className="flex-1 flex justify-between items-center">
             <p className="font-extralight">Sunset</p>
             <p className="text-2xl uppercase">
-              {new Date(result.daily.sunset[0]).toLocaleTimeString("en", {
+              {new Date(result.daily.sunset[0]).toLocaleTimeString("en-US", {
                 hour: "numeric",
                 minute: "numeric",
                 hour12: true,

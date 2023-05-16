@@ -1,9 +1,14 @@
 import { getClient } from "@/apollo-client";
 import CalloutCard from "@/components/CalloutCard";
+import HumidityChart from "@/components/HumidityChart";
 import InformationSideBar from "@/components/InformationSideBar";
+import RainChart from "@/components/RainChart";
 import StatCard from "@/components/StatCard";
+import TempChart from "@/components/TempChart";
 import fetchWeatherQuery from "@/graphql/queries/fetchWeatherQueries";
 import { toFahrenheit, toMilesHour } from "@/lib/conversions";
+
+export const revalidate = 60;
 
 interface WeatherPageProps {
   params: {
@@ -23,11 +28,12 @@ const WeatherPage = async ({
       current_weather: "true",
       latitude: lat,
       longitude: long,
-      timezone: "GMT",
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone.toString(),
     },
   });
 
   const result: Root = data.myQuery;
+  console.log(result.hourly.time);
 
   return (
     <div className="flex flex-col min-h-screen md:flex-row">
@@ -35,7 +41,7 @@ const WeatherPage = async ({
       <InformationSideBar city={city} result={result} lat={lat} long={long} />
       <div className="flex-1 p-5 lg:p-10 bg-slate-500">
         {/* Stat Cards */}
-        <div className="p-5">
+        <div>
           <div className="pb-5">
             <h2 className="text-xl font-bold">Today&apos;s Overview</h2>
             <p className="text-sm text-gray-400">
@@ -47,6 +53,7 @@ const WeatherPage = async ({
           <div className="m-2 mb-10">
             <CalloutCard message="This is where GPT will go" />
           </div>
+          <hr className="mb-5" />
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 m-2">
             <StatCard
               title="Today's Max Temperature"
@@ -95,9 +102,9 @@ const WeatherPage = async ({
         <hr className="mb-5" />
         {/* Charts */}
         <div className="space-y-3">
-          {/* Temperature Chart */}
-          {/* Rain Chart */}
-          {/* Humidity Chart */}
+          <TempChart result={result} />
+          <RainChart result={result} />
+          <HumidityChart result={result} />
         </div>
       </div>
     </div>
